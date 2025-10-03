@@ -1,0 +1,35 @@
+location: spawn:108:68:-196
+enabled: true
+display-range: 48
+update-range: 48
+update-interval: 20
+facing: 0.0
+down-origin: false
+pages:
+- lines:
+  - content: '&c&lИвенты'
+    height: 0.2
+  - content: ''
+    height: 0.3
+  - content: '&fДо появления &cвулкана &fосталось'
+    height: 0.3
+  - content: '&a%divinevulcan_time_to_start_string%'
+    height: 0.3
+  - content: 'До появления &cсундука смерти &fосталось'
+    height: 0.3
+  - content: '&a%bairdrop_time_to_start_format_hourly%'
+    height: 0.3
+  - content: '&fДо появления &aМирного груза &fосталось'
+    height: 0.3
+  - content: '&a%bairdrop_time_to_start_format_gruz%'
+    height: 0.3
+  - content: '&fДо появления &cМетеорита &fосталось'
+    height: 0.3
+  - content: '&a%bairdrop_time_to_start_format_star%'
+    height: 0.3
+  - content: '&fДо появления &dМистического сундука &fосталось'
+    height: 0.3
+  - content: '&a%cmi_schedule_nextin_airdrop%'
+  - content: '#ENTITY: SHULKER_BULLET'
+    height: 0.4625
+  actions: {}

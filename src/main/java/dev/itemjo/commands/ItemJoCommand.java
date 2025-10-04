@@ -56,21 +56,23 @@ public class ItemJoCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 ItemId id = ItemId.fromString(args[2]);
-                if (id == null) {
-                    sender.sendMessage(ChatColor.RED + "Неизвестный предмет: " + args[2]);
-                    return true;
-                }
                 int amount = 1;
                 if (args.length >= 4) {
                     try { amount = Math.max(1, Integer.parseInt(args[3])); } catch (NumberFormatException ignored) {}
                 }
-                ItemStack stack = plugin.getItemRegistry().create(id, amount);
+                ItemStack stack;
+                if (id != null) {
+                    stack = plugin.getItemRegistry().create(id, amount);
+                } else {
+                    stack = plugin.getItemRegistry().createByStringId(args[2], amount);
+                }
                 if (stack == null) {
                     sender.sendMessage(ChatColor.RED + "Не удалось создать предмет.");
                     return true;
                 }
                 target.getInventory().addItem(stack);
-                sender.sendMessage(ChatColor.GREEN + "Выдано: " + id.name() + " x" + amount + " игроку " + target.getName());
+                String idShown = id != null ? id.name() : args[2];
+                sender.sendMessage(ChatColor.GREEN + "Выдано: " + idShown + " x" + amount + " игроку " + target.getName());
                 return true;
             default:
                 sender.sendMessage(ChatColor.YELLOW + "/" + label + " <reload|give>");

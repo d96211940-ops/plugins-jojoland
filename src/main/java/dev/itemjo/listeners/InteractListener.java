@@ -41,17 +41,13 @@ public class InteractListener implements Listener {
         if (id == null) return;
         Player player = event.getPlayer();
 
-        switch (id) {
-            case "REPAIRER":
-                handleRepairer(event, player, item);
-                break;
-            case "POTION_STRENGTH_2":
-            case "POTION_SPEED_2":
-            case "POTION_FIRE_RES_2":
-            case "POTION_REGEN_2":
-            case "POTION_HEAL_2":
-                handleReusablePotion(event, player, item, id);
-                break;
+        if (isRepairer(id)) {
+            handleRepairer(event, player, item);
+            return;
+        }
+        if (isReusablePotion(id)) {
+            handleReusablePotion(event, player, item, id);
+            return;
         }
     }
 
@@ -75,7 +71,8 @@ public class InteractListener implements Listener {
         repaired += repairItem(boots);
 
         if (repaired > 0) {
-            plugin.getCooldownService().applyCooldown(player, actionKey, plugin.getCooldownService().getRepairerSeconds());
+            int seconds = resolveRepairerCooldown(idFromItem(item));
+            plugin.getCooldownService().applyCooldown(player, actionKey, seconds);
             player.sendMessage(ChatColor.GREEN + "Починка: " + repaired + " предметов на 50%.");
         } else {
             player.sendMessage(ChatColor.YELLOW + "Нечего чинить.");
@@ -104,23 +101,28 @@ public class InteractListener implements Listener {
         Integer uses = meta.getPersistentDataContainer().get(ItemRegistry.Keys.USES, org.bukkit.persistence.PersistentDataType.INTEGER);
         if (uses == null || uses <= 0) uses = plugin.getConfig().getInt("reusable-potions.uses", 15);
 
-        // Apply effect based on id
-        switch (id) {
-            case "POTION_STRENGTH_2":
-                player.addPotionEffect(new PotionEffect(PotionEffectType.STRENGTH, 90 * 20, 1, false, true, true));
-                break;
-            case "POTION_SPEED_2":
-                player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 90 * 20, 1, false, true, true));
-                break;
-            case "POTION_FIRE_RES_2":
-                player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 180 * 20, 0, false, true, true));
-                break;
-            case "POTION_REGEN_2":
-                player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 22 * 20, 1, false, true, true));
-                break;
-            case "POTION_HEAL_2":
-                player.addPotionEffect(new PotionEffect(PotionEffectType.INSTANT_HEALTH, 1, 1, false, true, true));
-                break;
+        // Apply effects from config
+        org.bukkit.configuration.ConfigurationSection s = plugin.getConfig().getConfigurationSection("items." + id);
+        if (s != null && s.isList("behaviors")) {
+            for (Object o : s.getList("behaviors")) {
+                if (!(o instanceof java.util.Map)) continue;
+                java.util.Map<?, ?> b = (java.util.Map<?, ?>) o;
+                if (!"reusable_potion".equalsIgnoreCase(String.valueOf(b.get("type")))) continue;
+                Object effectsObj = b.get("effects");
+                if (effectsObj instanceof java.util.List) {
+                    for (Object eo : (java.util.List<?>) effectsObj) {
+                        if (!(eo instanceof java.util.Map)) continue;
+                        java.util.Map<?, ?> em = (java.util.Map<?, ?>) eo;
+                        String effectName = String.valueOf(em.get("effect"));
+                        int duration = parseToTicks(em.get("duration"), 0);
+                        int amplifier = parseToInt(em.get("amplifier"), 0);
+                        org.bukkit.potion.PotionEffectType type = org.bukkit.potion.PotionEffectType.getByName(effectName);
+                        if (type != null) {
+                            player.addPotionEffect(new PotionEffect(type, duration, amplifier, false, true, true));
+                        }
+                    }
+                }
+            }
         }
 
         int remaining = Math.max(0, uses - 1);
@@ -141,5 +143,76 @@ public class InteractListener implements Listener {
             }
             player.sendMessage(ChatColor.RED + "Зелье израсходовано.");
         }
+    }
+
+    private boolean isReusablePotion(String id) {
+        org.bukkit.configuration.ConfigurationSection s = plugin.getConfig().getConfigurationSection("items." + id);
+        if (s == null || !s.isList("behaviors")) return false;
+        for (Object o : s.getList("behaviors")) {
+            if (!(o instanceof java.util.Map)) continue;
+            java.util.Map<?, ?> b = (java.util.Map<?, ?>) o;
+            if ("reusable_potion".equalsIgnoreCase(String.valueOf(b.get("type")))) return true;
+        }
+        return false;
+    }
+
+    private String idFromItem(ItemStack item) {
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return null;
+        return meta.getPersistentDataContainer().get(ItemRegistry.Keys.ID, org.bukkit.persistence.PersistentDataType.STRING);
+    }
+
+    private boolean isRepairer(String id) {
+        org.bukkit.configuration.ConfigurationSection s = plugin.getConfig().getConfigurationSection("items." + id);
+        if (s == null || !s.isList("behaviors")) return false;
+        for (Object o : s.getList("behaviors")) {
+            if (!(o instanceof java.util.Map)) continue;
+            java.util.Map<?, ?> b = (java.util.Map<?, ?>) o;
+            if ("repairer".equalsIgnoreCase(String.valueOf(b.get("type")))) return true;
+        }
+        return false;
+    }
+
+    private int resolveRepairerCooldown(String id) {
+        org.bukkit.configuration.ConfigurationSection s = plugin.getConfig().getConfigurationSection("items." + id);
+        if (s != null && s.isList("behaviors")) {
+            for (Object o : s.getList("behaviors")) {
+                if (!(o instanceof java.util.Map)) continue;
+                java.util.Map<?, ?> b = (java.util.Map<?, ?>) o;
+                if ("repairer".equalsIgnoreCase(String.valueOf(b.get("type")))) {
+                    Object v = b.get("cooldown");
+                    return parseToSeconds(v, plugin.getCooldownService().getRepairerSeconds());
+                }
+            }
+        }
+        return plugin.getCooldownService().getRepairerSeconds();
+    }
+
+    private int parseToTicks(Object value, int defTicks) {
+        int seconds = parseToSeconds(value, 0);
+        if (seconds > 0) return seconds * 20;
+        if (value instanceof Number) return ((Number) value).intValue();
+        return defTicks;
+    }
+
+    private int parseToSeconds(Object value, int def) {
+        if (value == null) return def;
+        if (value instanceof Number) return ((Number) value).intValue();
+        String s = String.valueOf(value).trim().toLowerCase();
+        try {
+            if (s.endsWith("ms")) return (int) Math.ceil(Double.parseDouble(s.substring(0, s.length() - 2)) / 1000.0);
+            if (s.endsWith("s")) return Integer.parseInt(s.substring(0, s.length() - 1));
+            if (s.endsWith("m")) return Integer.parseInt(s.substring(0, s.length() - 1)) * 60;
+            if (s.endsWith("h")) return Integer.parseInt(s.substring(0, s.length() - 1)) * 3600;
+            return Integer.parseInt(s);
+        } catch (Exception e) {
+            return def;
+        }
+    }
+
+    private int parseToInt(Object value, int def) {
+        if (value == null) return def;
+        if (value instanceof Number) return ((Number) value).intValue();
+        try { return Integer.parseInt(String.valueOf(value)); } catch (Exception e) { return def; }
     }
 }

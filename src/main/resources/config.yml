@@ -1,35 +1,99 @@
-# ItemJo configuration
-# Cooldowns in seconds unless otherwise stated
-cooldowns:
-  snowball: 15
-  repairer: 600  # 10 minutes
-
-reusable-potions:
-  uses: 15
+# ItemJo configuration (fully configurable items)
 
 logs:
-  # Plugin will create logs directory at plugins/ItemJo/logs in server runtime
   enabled: true
 
-# Item identifiers and display names
 items:
   DRAGON_HELMET:
+    material: GOLDEN_HELMET
     display-name: "§6Шлем Дракона"
+    unbreakable: true
+    flags: [ HIDE_UNBREAKABLE, HIDE_ATTRIBUTES ]
+    attributes:
+      - { attribute: GENERIC_ARMOR, slot: HEAD, amount: 3.0, operation: ADD_NUMBER }
+      - { attribute: GENERIC_ARMOR_TOUGHNESS, slot: HEAD, amount: 3.0, operation: ADD_NUMBER }
+      - { attribute: GENERIC_KNOCKBACK_RESISTANCE, slot: HEAD, amount: 0.1, operation: ADD_NUMBER }
+
   KING_ELYTRA:
+    material: ELYTRA
     display-name: "§dЭлитры Короля"
+    flags: [ HIDE_ATTRIBUTES ]
+    attributes:
+      - { attribute: GENERIC_ARMOR, slot: CHEST, amount: 8.0, operation: ADD_NUMBER }
+      - { attribute: GENERIC_ARMOR_TOUGHNESS, slot: CHEST, amount: 3.0, operation: ADD_NUMBER }
+      - { attribute: GENERIC_KNOCKBACK_RESISTANCE, slot: CHEST, amount: 0.1, operation: ADD_NUMBER }
+
   UNBREAKABLE_ELYTRA:
+    material: ELYTRA
     display-name: "§bУлучшенные Элитры"
+    unbreakable: true
+    flags: [ HIDE_UNBREAKABLE ]
+
   SLOW_SNOWBALL:
+    material: SNOWBALL
     display-name: "§f§lСнежок"
+    behaviors:
+      - type: snowball_slowness_on_hit
+        cooldown: 15s
+        duration: 3s
+        amplifier: 9
+
   REPAIRER:
+    material: BLAZE_ROD
     display-name: "§aРемонтник"
+    behaviors:
+      - type: repairer
+        cooldown: 10m
+        percent: 50
+
   POTION_STRENGTH_2:
+    material: POTION
     display-name: "§cМногоразовое зелье силы II"
+    potion: { base: STRENGTH, upgraded: true }
+    behaviors:
+      - type: reusable_potion
+        uses: 15
+        effects:
+          - { effect: STRENGTH, duration: 90s, amplifier: 1 }
+
   POTION_SPEED_2:
+    material: POTION
     display-name: "§bМногоразовое зелье скорости II"
+    potion: { base: SWIFTNESS, upgraded: true }
+    behaviors:
+      - type: reusable_potion
+        uses: 15
+        effects:
+          - { effect: SPEED, duration: 90s, amplifier: 1 }
+
   POTION_FIRE_RES_2:
+    material: POTION
     display-name: "§6Многоразовое зелье огнеупорности II"
+    potion: { base: FIRE_RESISTANCE, upgraded: true }
+    behaviors:
+      - type: reusable_potion
+        uses: 15
+        effects:
+          - { effect: FIRE_RESISTANCE, duration: 180s, amplifier: 0 }
+
   POTION_REGEN_2:
+    material: POTION
     display-name: "§dМногоразовое зелье регенерации II"
+    potion: { base: REGENERATION, upgraded: true }
+    behaviors:
+      - type: reusable_potion
+        uses: 15
+        effects:
+          - { effect: REGENERATION, duration: 22s, amplifier: 1 }
+
   POTION_HEAL_2:
+    material: POTION
     display-name: "§5Многоразовое зелье исцеления II"
+    potion: { base: HEALING, upgraded: true }
+    behaviors:
+      - type: reusable_potion
+        uses: 15
+        effects:
+          - { effect: INSTANT_HEALTH, duration: 0s, amplifier: 1 }
+
+# You can add more items above by following the same structure.

@@ -4,6 +4,9 @@ version: 1.0.0
 api-version: '1.20'
 authors: [ "you" ]
 description: Custom items plugin
+softdepend:
+  - PlaceholderAPI
+  - ProtocolLib
 commands:
   itemjo:
     description: Main command for ItemJo plugin

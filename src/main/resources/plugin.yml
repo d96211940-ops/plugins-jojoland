@@ -1,0 +1,24 @@
+name: ItemJo
+main: dev.itemjo.ItemJoPlugin
+version: 1.0.0
+api-version: '1.20'
+authors: [ "you" ]
+description: Custom items plugin
+softdepend:
+  - PlaceholderAPI
+  - ProtocolLib
+commands:
+  itemjo:
+    description: Main command for ItemJo plugin
+    usage: /itemjo <reload|give>
+    permission: itemjo.use
+permissions:
+  itemjo.use:
+    description: Use ItemJo base command
+    default: op
+  itemjo.reload:
+    description: Reload ItemJo configuration
+    default: op
+  itemjo.give:
+    description: Give custom items
+    default: op

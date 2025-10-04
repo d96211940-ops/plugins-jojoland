@@ -1,0 +1,9 @@
+dev/itemjo/util/CooldownService.class
+dev/itemjo/items/ItemId.class
+dev/itemjo/items/ItemRegistry$1.class
+dev/itemjo/listeners/InteractListener.class
+dev/itemjo/commands/ItemJoCommand.class
+dev/itemjo/items/ItemRegistry$Keys.class
+dev/itemjo/items/ItemRegistry.class
+dev/itemjo/listeners/ProjectileListener.class
+dev/itemjo/ItemJoPlugin.class

@@ -1,0 +1,35 @@
+# ItemJo configuration
+# Cooldowns in seconds unless otherwise stated
+cooldowns:
+  snowball: 15
+  repairer: 600  # 10 minutes
+
+reusable-potions:
+  uses: 15
+
+logs:
+  # Plugin will create logs directory at plugins/ItemJo/logs in server runtime
+  enabled: true
+
+# Item identifiers and display names
+items:
+  DRAGON_HELMET:
+    display-name: "§6Шлем Дракона"
+  KING_ELYTRA:
+    display-name: "§dЭлитры Короля"
+  UNBREAKABLE_ELYTRA:
+    display-name: "§bУлучшенные Элитры"
+  SLOW_SNOWBALL:
+    display-name: "§f§lСнежок"
+  REPAIRER:
+    display-name: "§aРемонтник"
+  POTION_STRENGTH_2:
+    display-name: "§cМногоразовое зелье силы II"
+  POTION_SPEED_2:
+    display-name: "§bМногоразовое зелье скорости II"
+  POTION_FIRE_RES_2:
+    display-name: "§6Многоразовое зелье огнеупорности II"
+  POTION_REGEN_2:
+    display-name: "§dМногоразовое зелье регенерации II"
+  POTION_HEAL_2:
+    display-name: "§5Многоразовое зелье исцеления II"

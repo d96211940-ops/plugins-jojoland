@@ -1,0 +1,55 @@
+{
+  "sha": "ebce1612813ffe42864ccde46f179d5fe0dbd74a",
+  "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/trees/ebce1612813ffe42864ccde46f179d5fe0dbd74a",
+  "tree": [
+    {
+      "path": "daily-quests.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c167ddc82febb1ef2cc477f16e2faf147bab741",
+      "size": 4818,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/0c167ddc82febb1ef2cc477f16e2faf147bab741"
+    },
+    {
+      "path": "king",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "a9d0cafb271975af86592425688f7a8df655c8e9",
+      "size": 1140,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/a9d0cafb271975af86592425688f7a8df655c8e9"
+    },
+    {
+      "path": "week-1-quests.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b1172ebb4e08d3aa7f1e6f3c2e5fdb915abafa3a",
+      "size": 4135,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/b1172ebb4e08d3aa7f1e6f3c2e5fdb915abafa3a"
+    },
+    {
+      "path": "week-2-quests.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8af4993fc80bf6d246275cf419d44403d0df0c40",
+      "size": 3433,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/8af4993fc80bf6d246275cf419d44403d0df0c40"
+    },
+    {
+      "path": "week-3-quests.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b04b54f24d9c64808ac352698b2ec906343b0f6b",
+      "size": 4640,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/b04b54f24d9c64808ac352698b2ec906343b0f6b"
+    },
+    {
+      "path": "week-4-quests.yml",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "06ff4c5c2c64d3e476dd31867841d294a030fbc3",
+      "size": 3588,
+      "url": "https://api.github.com/repos/d96211940-ops/plugins-jojoland/git/blobs/06ff4c5c2c64d3e476dd31867841d294a030fbc3"
+    }
+  ],
+  "truncated": false
+}

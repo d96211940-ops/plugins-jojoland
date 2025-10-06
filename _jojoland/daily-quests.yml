@@ -44,16 +44,16 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   4:
-    name: 'Дневной квест - Пиглин'
+    name: 'Дневной квест - Булыжник'
     type: block-place
-    variable: gold_block:0
-    required-progress: 10
+    variable: cobblestone:0
+    required-progress: 64
     points: 10
     item:
-      material: gold_block:0
-      name: '&eПиглин'
+      material: cobblestone:0
+      name: '&eБулыжник'
       lore:
-        - '&7Размести &e10 золотых блоков'
+        - '&7Размести &e64 булыжника'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   5:
@@ -109,16 +109,16 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   9:
-    name: 'Дневной квест - Питомец'
-    type: tame
-    variable: wolf
-    required-progress: 1
+    name: 'Дневной квест - Мясник'
+    type: kill-mob
+    variable: cow
+    required-progress: 10
     points: 10
     item:
-      material: monster_egg:0
-      name: '&eПитомец'
+      material: beef:0
+      name: '&eМясник'
       lore:
-        - '&7Приручи &e1 волка'
+        - '&7Убей &e10 коров'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   10:

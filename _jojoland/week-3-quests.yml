@@ -44,16 +44,16 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   4:
-    name: 'Неделя 3 - Пиглин'
+    name: 'Неделя 3 - Каменщик'
     type: block-place
-    variable: gold_block:0
-    required-progress: 10
+    variable: stone:0
+    required-progress: 256
     points: 30
     item:
-      material: gold_block:0
-      name: '&eПиглин'
+      material: stone:0
+      name: '&eКаменщик'
       lore:
-        - '&7Размести &e10 золотых блоков'
+        - '&7Размести &e256 камня'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   5:
@@ -109,16 +109,16 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   9:
-    name: 'Неделя 3 - Питомец'
-    type: tame
-    variable: wolf
-    required-progress: 1
+    name: 'Неделя 3 - Дровосек'
+    type: block-break
+    variable: oak_log:0
+    required-progress: 128
     points: 30
     item:
-      material: monster_egg:0
-      name: '&eПитомец'
+      material: oak_log:0
+      name: '&eДровосек'
       lore:
-        - '&7Приручи &e1 волка'
+        - '&7Срубите &e128 дубовых брёвен'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   10:

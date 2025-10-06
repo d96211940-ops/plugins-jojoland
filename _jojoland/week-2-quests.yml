@@ -1,55 +1,55 @@
 quests:
   1:
-    name: 'Неделя 2 - Ломатель'
-    type: item-break
-    variable: diamond_pickaxe:0
-    required-progress: 3
+    name: 'Неделя 2 - Каменолом'
+    type: block-break
+    variable: stone:0
+    required-progress: 500
     points: 110
     item:
       material: stone_pickaxe:0
-      name: '&eЛоматель'
+      name: '&eКаменолом'
       lore:
-        - '&7Сломай &e3 алмазные кирки'
+        - '&7Вскопай &e500 камня'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   2:
     name: 'Неделя 2 - Любознатель'
     type: execute-command
-    variable: '/social'
+    variable: '/help'
     required-progress: 1
     points: 120
     item:
       material: saddle:0
       name: '&eНовенький'
       lore:
-        - '&7Используй команду &e/social'
+        - '&7Используй команду &e/help'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   3: # id квеста
     name: 'Неделя 2 - Опытный Шахтёр' # Имя квеста
     type: block-break # Тип квеста
     variable: ancient_debris:0 # Блок, который игрок должен сломать
-    required-progress: 10 # Сколько раз игрок должен сломать блок
+    required-progress: 5 # Сколько раз игрок должен сломать блок
     points: 130 # Сколько баллов игрок получит за выполнение квеста
     item: # Иконка квеста в меню
       material: ancient_debris:0
       amount: 1
       name: '&eОпытный Шахтёр'
       lore:
-        - '&7Вскопай &e10 Незеритовых обломков'
+        - '&7Вскопай &e5 незеритовых обломков'
         - ''
         - '&7Прогресс &e%progress_bar%'
   4:
-    name: 'Неделя 2 - Алмазник'
+    name: 'Неделя 2 - Каменные работы'
     type: block-place
-    variable: diamond_block:0
-    required-progress: 16
+    variable: stone_bricks:0
+    required-progress: 64
     points: 140
     item:
-      material: diamond_block:0
-      name: '&eАлмазник'
+      material: stone_bricks:0
+      name: '&eКаменные работы'
       lore:
-        - '&7Размести &e16 алмазных блоков'
+        - '&7Размести &e64 каменных кирпича'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   5:
@@ -94,15 +94,15 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   8:
-    name: 'Неделя 2 - Это наше последнее дело'
+    name: 'Неделя 2 - Несокрушимый'
     type: block-place
-    variable: netherite_block:0
-    required-progress: 3
+    variable: obsidian:0
+    required-progress: 10
     points: 180
     item:
-      material: netherite_block:0
-      name: '&eЭто наше последнее дело'
+      material: obsidian:0
+      name: '&eНесокрушимый'
       lore:
-        - '&7Размести &e3 незеритовых блока'
+        - '&7Размести &e10 обсидиана'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'

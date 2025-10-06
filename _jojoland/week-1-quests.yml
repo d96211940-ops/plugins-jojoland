@@ -14,16 +14,16 @@ quests:
         - ''
         - '%progress_bar% &7(&a%percentage_progress%&7)' # При желании вместо этого можно использовать формат в стиле прогресс/необходимо (23/1000). Посмотри примеры чуть ниже.
   2:
-    name: 'Неделя 1 - Пиглин'
+    name: 'Неделя 1 - Строитель'
     type: block-place
-    variable: gold_block:0
-    required-progress: 10
+    variable: cobblestone:0
+    required-progress: 128
     points: 20
     item:
-      material: gold_block:0
-      name: '&eПиглин'
+      material: cobblestone:0
+      name: '&eСтроитель'
       lore:
-        - '&7Размести &e10 золотых блоков'
+        - '&7Размести &e128 булыжника'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   3:
@@ -33,10 +33,10 @@ quests:
     required-progress: 1
     points: 30
     item:
-      material: netherite_sword:0
+      material: diamond_sword:0
       name: '&eПодготовка к бою'
       lore:
-        - '&7Создай &eнезеритовый меч'
+        - '&7Создай &eалмазный меч'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   4:
@@ -56,13 +56,13 @@ quests:
     name: 'Неделя 1 - Печкин'
     type: smelt
     variable: iron_ingot:0
-    required-progress: 320
+    required-progress: 64
     points: 50
     item:
       material: iron_ingot:0
       name: '&eПечкин'
       lore:
-        - '&7Переплавь &e320 железной руды'
+        - '&7Переплавь &e64 железной руды'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   6:
@@ -80,16 +80,16 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   7:
-    name: 'Неделя 1 - Убийца'
-    type: kill-player
-    variable: none
-    required-progress: 15
+    name: 'Неделя 1 - Охотник PvE'
+    type: kill-mob
+    variable: skeleton
+    required-progress: 25
     points: 70
     item:
       material: wooden_sword:0
-      name: '&eУбийца'
+      name: '&eОхотник PvE'
       lore:
-        - '&7Убей &e15 игроков'
+        - '&7Убей &e25 скелетов'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   8:
@@ -106,28 +106,28 @@ quests:
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   9:
-    name: 'Неделя 1 - Рыбак'
-    type: fish
-    variable: none
-    required-progress: 100
+    name: 'Неделя 1 - Повар'
+    type: smelt
+    variable: cooked_beef:0
+    required-progress: 64
     points: 90
     item:
-      material: fishing_rod:0
-      name: '&eРыбак'
+      material: cooked_beef:0
+      name: '&eПовар'
       lore:
-        - '&7Нарыбачь &e100 предметов'
+        - '&7Переплавь &e64 говядины'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
   10:
-    name: 'Неделя 1 - Опытный'
-    type: gain-experience
-    variable: none
-    required-progress: 2000
+    name: 'Неделя 1 - Горняк'
+    type: block-break
+    variable: iron_ore:0
+    required-progress: 128
     points: 100
     item:
-      material: experience_bottle:0
-      name: '&eОпытный'
+      material: iron_ore:0
+      name: '&eГорняк'
       lore:
-        - '&7Получи &e2000 единиц опыта'
+        - '&7Добудь &e128 железной руды'
         - ''
         - '&7Прогресс &e%total_progress%&7/&e%required_progress%'
